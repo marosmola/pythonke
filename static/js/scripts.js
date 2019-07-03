@@ -14,6 +14,10 @@ $(document).ready(function(){
     $(this).addClass('img-fluid');
   })
 
+  $('.detail-content img').each(function(){
+    $(this).addClass('img-fluid');
+  })
+
   // creating dynamic preview
   var contentInput = $("#id_content");
 

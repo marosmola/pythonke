@@ -9,7 +9,9 @@
       {% if obj.draft %} <span style="color:red">Draft</span> {% endif %}
       
       <small>{{ obj.publish }}</small>
-      <div class="markdown-content">{{ obj.content }}</div>
+      <div class="detail-content">
+        {{ obj.get_html }}
+      </div>
 
       <hr><small>Author: {{ obj.user.get_full_name }}</small>
     </div>

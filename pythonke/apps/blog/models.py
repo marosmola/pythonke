@@ -5,7 +5,7 @@ from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from django.utils import timezone
 from django.utils.safestring import mark_safe
-from markdown_deux import markdown
+from markdown import markdown
 
 
 class PostManager(models.Manager):
@@ -40,7 +40,7 @@ class Post(models.Model):
 
     def get_html(self):
         content = self.content
-        return mark_safe(markdown(content))
+        return mark_safe(markdown(content, extensions=['fenced_code']))
 
 
 def create_slug(instance, new_slug=None):
