@@ -1,33 +1,34 @@
-{% extends 'base.html' %}
+{% extends 'blog/blog.html' %}
 
 {% block head_extra %}
 {{ form.media }}
+<script src="https://cdn.tiny.cloud/1/cw1pajkf9oxsz7gz0f8ra9ba6j39vg6rma6lk2raza8yr70v/tinymce/5/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'advlist autolink link image lists charmap print preview',
+    // menubar: "insert",
+    toolbar: 'undo redo | styleselect | bold italic | link image',
+    image_caption: true 
+  });
+</script>
 {% endblock head_extra %}
 
-{% block content %}
+{% block blog %}
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row justify-content-center">
 
-    <div class="col-sm-6">
+    <div class="col-lg-10">
       <h1>Form</h1>
       <form method="POST" action='' enctype='multipart/form-data'>
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Create post">
       </form>
-    </div> <!-- end col-sm-6 -->
-
-    <div id="preview-box" class="col-sm-6">
-      <h1>Preview</h1>
-      <div class="content-preview">
-        <h3 id="preview-title"></h3>
-        <hr>
-        <p id='preview-content'></p>
-      </div>
-    </div> <!-- end col-sm-6 -->
+    </div> <!-- end col-sm-8 -->
 
   </div> <!-- end row -->
 </div> <!-- end container -->
   
-{% endblock %}
+{% endblock blog %}

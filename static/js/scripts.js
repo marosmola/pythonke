@@ -19,23 +19,23 @@ $(document).ready(function(){
   })
 
   // creating dynamic preview
-  var contentInput = $("#id_content");
+  // var contentInput = $("#id_content");
 
-  function setContent(value){
-    var markedContent = marked(value);
-    $("#preview-content").html(markedContent);
-    $("#preview-content img").each(function(){
-    $(this).addClass('img-fluid');
-    })
-  }
+  // function setContent(value){
+  //   var markedContent = marked(value);
+  //   $("#preview-content").html(markedContent);
+  //   $("#preview-content img").each(function(){
+  //   $(this).addClass('img-fluid');
+  //   })
+  // }
 
-  if (typeof contentInput.val() !== "undefined") {
-    setContent(contentInput.val());
-    contentInput.keyup(function(){
-        var newContent = $(this).val();
-        setContent(newContent);
-    })
-  }
+  // if (typeof contentInput.val() !== "undefined") {
+  //   setContent(contentInput.val());
+  //   contentInput.keyup(function(){
+  //       var newContent = $(this).val();
+  //       setContent(newContent);
+  //   })
+  // }
 
   // dynamic title
 

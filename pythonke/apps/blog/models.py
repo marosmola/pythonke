@@ -10,22 +10,29 @@ from markdown import markdown
 
 class PostManager(models.Manager):
     def active(self, *args, **kwargs):
-        return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
+        return super(PostManager, self).filter(draft=False)
 
 
 class Post(models.Model):
+
+    COLOR_MODE_CHOICES = [
+        ('light', 'light'),
+        ('dark', 'dark'),
+    ]
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1, on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
+    title_color = models.CharField(max_length=5, choices=COLOR_MODE_CHOICES, default='light')
     slug = models.SlugField(unique=True)
-    content = models.TextField()
     image = models.FileField(null=True, blank=True)
     description = models.CharField(max_length=100)
+
+    content = models.TextField(blank=True)
     draft = models.BooleanField(default=False)
-    publish = models.DateField(auto_now=False, auto_now_add=False)
+    # publish = models.DateField(auto_now=False, auto_now_add=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     created = models.DateTimeField(auto_now=False, auto_now_add=True)
-
-    # TODO: gitlink
+    gitlink = models.URLField()
 
     objects = PostManager()
 
@@ -37,10 +44,6 @@ class Post(models.Model):
     
     class Meta:
         ordering = ["-created"]
-
-    def get_html(self):
-        content = self.content
-        return mark_safe(markdown(content, extensions=['fenced_code']))
 
 
 def create_slug(instance, new_slug=None):

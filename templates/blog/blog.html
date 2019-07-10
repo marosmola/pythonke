@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% block navbar %}
+<nav class="navbar navbar-dark bg-dark">
+  Editor mode
+</nav>
+{% endblock navbar %}
+{% endif %}
+
+
+
+{% block blog %}
+{% endblock blog %}
+  
+{% endblock content %}

@@ -1,21 +1,54 @@
-{% extends 'base.html' %}
+{% extends 'blog/blog.html' %}
+{% load static %}
 
-{% block content %}
+{% block navbar %}
+<div id="editor-navbar" class="container-fluid">
+<!-- <div class="container"> -->
+  <div class="row justify-content-md-center">
+    <div class="col-lg-10">
+      <nav class="navbar px-0">
+        Editor mode
+        <form class="form-inline">
+          <a class="btn btn-outline-success" href="/blog/{{ obj.pk }}/edit">edit</a>
+        </form>
+      </nav>
+    </div>
+  </div>
+<!-- </div> -->
+</div>
+
+{% endblock navbar %}
+
+{% block blog %}
 
 <div class="container">
   <div class="row justify-content-md-center">
-    <div class="col-sm-8">
-      <h1>{{ obj.title }}</h1>
+    <div class="col-lg-10">
+
+      <!-- breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ obj.title }}</li>
+        </ol>
+      </nav>
+      <!-- end of breadcrumb -->
+
       {% if obj.draft %} <span style="color:red">Draft</span> {% endif %}
-      
-      <small>{{ obj.publish }}</small>
+        
       <div class="detail-content">
-        {{ obj.get_html }}
+        {{ obj.content | safe }}
       </div>
 
+      <hr>
+      <a href="{{ obj.gitlink }}">
+        <img class="img-thumbnail" width="100px" src="{% static 'images/git.png' %}" alt="git">
+      </a> 
+
       <hr><small>Author: {{ obj.user.get_full_name }}</small>
+      <small>{{ obj.publish }}</small>
     </div>
   </div>
 </div>
   
-{% endblock %}
+{% endblock blog %}

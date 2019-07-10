@@ -1,13 +1,36 @@
-{% extends 'base.html' %}
+{% extends 'blog/blog.html' %}
 
-{% block content %}
+
+{% block navbar %}
+<div id="editor-navbar" class="container-fluid">
+  <div class="row justify-content-md-center">
+    <div class="col-lg-10">
+      <nav class="navbar px-0">
+        Editor mode
+        <form class="form-inline">
+          <a class="btn btn-outline-success" href="/blog/create">Create post</a>
+        </form>
+      </nav>
+    </div>
+  </div>
+</div>
+
+{% endblock navbar %}
+
+
+{% block blog %}
+
+<nav class="navbar navbar-light bg-light">
+  <h1 id="blog-title">GitBlog</h1>
+  <h6 id="blog-subtitle">Príspevky so silným kódom</h6>
+</nav>
 
 <div id="graph-container"></div>
 
 <div class="container">
 
   <div class="row">
-    <h3>Featured posts</h3>
+    <h3>Odporúčané príspevky</h3>
   </div>
 
   <div class="row">
@@ -18,7 +41,7 @@
         <a href="{{ obj.get_absolute_url }}" class="link-div">
           <div class="card-header cover" 
             {% if obj.image %}style="background-image: url('{{ obj.image.url }}')"{% endif %}>
-            <h3>{{ obj.title }}</h3>
+            <h3 class="title-{{ obj.title_color }}">{{ obj.title }}</h3>
           </div>
         </a>
         
@@ -63,4 +86,4 @@
 
 </div> <!-- endcontainer -->
   
-{% endblock %}
+{% endblock blog %}
