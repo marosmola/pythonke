@@ -12,7 +12,7 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: cd pythonke && python manage.py test
+          command: pipenv run python pythonke/manage.py test
           name: Test
 
 workflows:
